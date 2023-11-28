@@ -3,14 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingLeanbackLauncher">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
-    <uses-feature
-        android:name="android.software.leanback"
-        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -22,9 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cocktails"
         tools:targetApi="32">
-        <activity
-            android:name=".Helper"
-            android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
