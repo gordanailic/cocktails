@@ -1,8 +1,5 @@
 package com.example.cocktails
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,7 +12,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cocktails.databinding.ActivitySplashScreenBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -28,11 +24,11 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
         Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
-      //  setContentView(R.layout.activity_splash_screen)
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
     }
+
     private fun init() {
         initUI()
     }
@@ -42,9 +38,13 @@ class SplashScreenActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         val bottomNavigationView = binding.bottomNavigationView
         val navController = findNavController(R.id.fragmentContainerView)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.cocktailsFragment,
-                                                            R.id.favoritesFragment,
-                                                            R.id.profileFragment))
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.cocktailsFragment,
+                R.id.favoritesFragment,
+                R.id.profileFragment
+            )
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)
     }
