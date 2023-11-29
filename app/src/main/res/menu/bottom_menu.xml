@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cocktailsFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/baseline_local"
+        android:title="@string/coctails"
+
+        />
+    <item
+        android:id="@+id/favoritesFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/baseline_favorite"
+        android:title="@string/favorites" />
+    <item
+        android:id="@+id/profileFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/baseline_person_outline"
+        android:title="@string/profile" />
+</menu>
