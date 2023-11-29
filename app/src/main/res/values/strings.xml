@@ -3,5 +3,13 @@
     <string name="cocktails">Cocktails</string>
     <string name="favorites">Favorites</string>
     <string name="profile">Profile</string>
+    <string name="todo">TODO</string>
+    <string name="email">Email</string>
+    <string name="example_mail_com">example@mail.com</string>
+    <string name="gordana_ilic">Gordana Ilic</string>
+    <string name="full_name">Full name</string>
+    <string name="password">Password</string>
+    <string name="example123">example123</string>
+    <string name="logout">Logout</string>
 
 </resources>
