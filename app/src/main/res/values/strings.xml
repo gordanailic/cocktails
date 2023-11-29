@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Cocktails</string>
-    <string name="coctails">Coctails</string>
+    <string name="cocktails">Cocktails</string>
     <string name="favorites">Favorites</string>
     <string name="profile">Profile</string>
 
