@@ -3,6 +3,6 @@
     <style name="Base.Theme.Cocktails" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <item name="android:statusBarColor">#FFFFFF</item>
-
+        <item name="fontFamily">@font/caveat</item>
     </style>
 </resources>

@@ -1,10 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Cocktails" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-         <item name="android:statusBarColor">#FFFFFF</item>
-     </style>
+        <item name="android:statusBarColor">#FFFFFF</item>
+        <item name="fontFamily">@font/caveat</item>
+    </style>
 
-     <style name="Theme.Cocktails" parent="Base.Theme.Cocktails"/>
+    <style name="Theme.Cocktails" parent="Base.Theme.Cocktails" />
 
- </resources>
+</resources>
