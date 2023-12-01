@@ -1,7 +1,8 @@
-package com.example.cocktails.presentation.view.recycler.viewholder
+package com.example.cocktails.presentation.view.fragments.cocktails.recycler.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cocktails.R
 import com.example.cocktails.data.models.Cocktail
 import com.example.cocktails.databinding.ItemCocktailBinding
 
@@ -13,6 +14,15 @@ class CocktailViewHolder(private val itemBinding: ItemCocktailBinding) :
             .load(cocktail.image)
             .into(itemBinding.cocktail)
         itemBinding.nameCocktail.text = cocktail.name
+        if (cocktail.favorite) {
+            Glide.with(itemBinding.favoriteButton.context)
+                .load(R.drawable.imageview_checked)
+                .into(itemBinding.favoriteButton)
+        } else {
+            Glide.with(itemBinding.favoriteButton.context)
+                .load(R.drawable.imageview_unchecked)
+                .into(itemBinding.favoriteButton)
+        }
     }
 
 }

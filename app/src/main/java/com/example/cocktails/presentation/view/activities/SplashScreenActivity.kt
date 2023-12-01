@@ -27,12 +27,9 @@ class SplashScreenActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        init()
-    }
-
-    private fun init() {
         initUI()
     }
+
 
     private fun initUI() {
 

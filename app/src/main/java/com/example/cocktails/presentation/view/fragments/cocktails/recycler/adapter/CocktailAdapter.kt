@@ -1,12 +1,12 @@
-package com.example.cocktails.presentation.view.recycler.adapter
+package com.example.cocktails.presentation.view.fragments.cocktails.recycler.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.cocktails.data.models.Cocktail
 import com.example.cocktails.databinding.ItemCocktailBinding
-import com.example.cocktails.presentation.view.recycler.diff.CoctailDiffcallback
-import com.example.cocktails.presentation.view.recycler.viewholder.CocktailViewHolder
+import com.example.cocktails.presentation.view.fragments.cocktails.recycler.diff.CoctailDiffcallback
+import com.example.cocktails.presentation.view.fragments.cocktails.recycler.viewholder.CocktailViewHolder
 
 class CocktailAdapter(
     var cocktails: List<Cocktail>

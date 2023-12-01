@@ -1,4 +1,4 @@
-package com.example.cocktails.presentation.view.fragments
+package com.example.cocktails.presentation.view.fragments.cocktails
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cocktails.R
 import com.example.cocktails.data.models.Cocktail
 import com.example.cocktails.databinding.FragmentCocktailsBinding
-import com.example.cocktails.presentation.view.recycler.adapter.CocktailAdapter
+import com.example.cocktails.presentation.view.fragments.cocktails.recycler.adapter.CocktailAdapter
 
 
 class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
@@ -23,6 +23,39 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
 
     private var _binding: FragmentCocktailsBinding? = null
     private val binding get() = _binding!!
+    private var cocktailsFragment: MutableList<Cocktail> = mutableListOf(
+        Cocktail(
+            1,
+            "Cocktail1",
+            R.drawable.photo,
+            false
+        ), Cocktail(
+            2,
+            "Cocktail2",
+            R.drawable.photo2,
+            false
+        ), Cocktail(
+            3,
+            "Cocktail3",
+            R.drawable.photo3,
+            false
+        ), Cocktail(
+            4,
+            "Cocktail4",
+            R.drawable.photo4,
+            false
+        ), Cocktail(
+            5,
+            "Cocktail5",
+            R.drawable.photo5,
+            false
+        ), Cocktail(
+            6,
+            "Cocktail6",
+            R.drawable.photo6,
+            false
+        )
+    )
 
 
     override fun onCreateView(
@@ -44,46 +77,16 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                TODO("What should I do when I click?")
+                return true
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        setupRecyclerView()
+    }
 
 
-        val coctailsFragment = mutableListOf(
-            Cocktail(
-                1,
-                "Cocktail1",
-                R.drawable.photo,
-                false
-            ), Cocktail(
-                2,
-                "Cocktail2",
-                R.drawable.photo2,
-                false
-            ), Cocktail(
-                3,
-                "Cocktail3",
-                R.drawable.photo3,
-                false
-            ), Cocktail(
-                4,
-                "Cocktail4",
-                R.drawable.photo4,
-                false
-            ), Cocktail(
-                5,
-                "Cocktail5",
-                R.drawable.photo5,
-                false
-            ), Cocktail(
-                6,
-                "Cocktail6",
-                R.drawable.photo6,
-                false
-            )
-        )
+    fun setupRecyclerView() {
         binding.rvCocktails.layoutManager = GridLayoutManager(context, 2)
-        val adapter = CocktailAdapter(coctailsFragment)
+        val adapter = CocktailAdapter(cocktailsFragment)
         binding.rvCocktails.adapter = adapter
     }
 
