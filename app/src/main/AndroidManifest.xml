@@ -19,7 +19,7 @@
         tools:targetApi="32">
 
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".presentation.view.activities.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.Cocktails.MySplash">
             <intent-filter>

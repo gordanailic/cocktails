@@ -1,4 +1,4 @@
-package com.example.cocktails
+package com.example.cocktails.presentation.view.activities
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.cocktails.R
 import com.example.cocktails.databinding.ActivitySplashScreenBinding
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -35,14 +36,12 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun initUI() {
 
-        setSupportActionBar(findViewById(R.id.toolbar))
+        setSupportActionBar(binding.toolbar)
         val bottomNavigationView = binding.bottomNavigationView
         val navController = findNavController(R.id.fragmentContainerView)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.cocktailsFragment,
-                R.id.favoritesFragment,
-                R.id.profileFragment
+                R.id.cocktailsFragment, R.id.favoritesFragment, R.id.profileFragment
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
