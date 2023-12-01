@@ -12,7 +12,7 @@
         android:id="@+id/rvCocktails"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/background2"
+        android:background="@drawable/background_home"
         android:clipToPadding="false"
         android:paddingBottom="?android:attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
