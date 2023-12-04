@@ -12,6 +12,7 @@ class CoctailDiffcallback : DiffUtil.ItemCallback<Cocktail>() {
     override fun areContentsTheSame(oldItem: Cocktail, newItem: Cocktail): Boolean {
         return oldItem.name == newItem.name &&
                 oldItem.image == newItem.image &&
+                oldItem.alcoholic == newItem.alcoholic &&
                 oldItem.favorite == newItem.favorite
     }
 

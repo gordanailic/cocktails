@@ -8,9 +8,7 @@ import com.example.cocktails.databinding.ItemCocktailBinding
 import com.example.cocktails.presentation.view.fragments.cocktails.recycler.diff.CoctailDiffcallback
 import com.example.cocktails.presentation.view.fragments.cocktails.recycler.viewholder.CocktailViewHolder
 
-class CocktailAdapter(
-    var cocktails: List<Cocktail>
-) : ListAdapter<Cocktail, CocktailViewHolder>(CoctailDiffcallback()) {
+class CocktailAdapter: ListAdapter<Cocktail, CocktailViewHolder>(CoctailDiffcallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CocktailViewHolder {
@@ -20,11 +18,11 @@ class CocktailAdapter(
     }
 
     override fun getItemCount(): Int {
-        return cocktails.size
+        return currentList.size
     }
 
     override fun onBindViewHolder(holder: CocktailViewHolder, position: Int) {
-        holder.bind(cocktails[position])
+        holder.bind(getItem(position))
     }
 
 }

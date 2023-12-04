@@ -13,7 +13,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cocktails.R
 import com.example.cocktails.databinding.ActivitySplashScreenBinding
-
+import dagger.hilt.android.AndroidEntryPoint
+@AndroidEntryPoint
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
@@ -29,8 +30,6 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
         initUI()
     }
-
-
     private fun initUI() {
 
         setSupportActionBar(binding.toolbar)
