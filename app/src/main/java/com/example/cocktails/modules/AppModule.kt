@@ -22,16 +22,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMyRepository(api: CocktailsService): CocktailRepository {
-        return CocktailRepositoryImpl(api)
-    }
+    fun provideMyRepository(api: CocktailsService): CocktailRepository = CocktailRepositoryImpl(api)
 
     @Singleton
     @Provides
-    fun provideGson(): Gson {
-        return GsonBuilder()
-            .create()
-    }
+    fun provideGson(): Gson = GsonBuilder().create()
 
     @Singleton
     @Provides
@@ -46,9 +41,7 @@ object AppModule {
     }
     @Provides
     @Singleton
-    fun provideConstants(): Constants {
-        return Constants
-    }
+    fun provideConstants(): Constants = Constants
 
 
     @Provides

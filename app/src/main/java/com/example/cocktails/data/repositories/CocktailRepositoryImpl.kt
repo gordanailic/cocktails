@@ -8,7 +8,7 @@ class CocktailRepositoryImpl(
     private val api: CocktailsService
 ) : CocktailRepository {
 
-    override suspend fun fetchAll(): Response<CocktailResponse> {
+    override suspend fun getAllCocktails(): Response<CocktailResponse> {
         return api.getCocktailByName()
     }
 }
