@@ -3,7 +3,7 @@ package com.example.cocktails.presentation.view.fragments.cocktails.recycler.dif
 import androidx.recyclerview.widget.DiffUtil
 import com.example.cocktails.data.models.Cocktail
 
-class CoctailDiffcallback : DiffUtil.ItemCallback<Cocktail>() {
+class CocktailDiffcallback : DiffUtil.ItemCallback<Cocktail>() {
 
     override fun areItemsTheSame(oldItem: Cocktail, newItem: Cocktail): Boolean {
         return oldItem.id == newItem.id
