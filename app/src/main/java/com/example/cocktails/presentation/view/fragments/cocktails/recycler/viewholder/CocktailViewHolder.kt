@@ -10,19 +10,19 @@ class CocktailViewHolder(private val itemBinding: ItemCocktailBinding) :
     RecyclerView.ViewHolder(itemBinding.root) {
 
     fun bind(cocktail: Cocktail) {
-        Glide.with(itemBinding.cocktail.context)
-            .load(cocktail.image)
-            .into(itemBinding.cocktail)
+        Glide.with(itemBinding.cocktail.context).load(cocktail.image).into(itemBinding.cocktail)
         itemBinding.nameCocktail.text = cocktail.name
         if (cocktail.favorite) {
-            Glide.with(itemBinding.favoriteButton.context)
-                .load(R.drawable.imageview_checked)
-                .into(itemBinding.favoriteButton)
+            setImage(R.drawable.imageview_checked)
         } else {
-            Glide.with(itemBinding.favoriteButton.context)
-                .load(R.drawable.imageview_unchecked)
-                .into(itemBinding.favoriteButton)
+            setImage(R.drawable.imageview_unchecked)
         }
+    }
+
+    fun setImage(image: Int) {
+        Glide.with(itemBinding.favoriteButton.context).
+        load(image).
+        into(itemBinding.favoriteButton)
     }
 
 }

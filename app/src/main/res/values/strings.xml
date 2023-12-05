@@ -13,5 +13,6 @@
     <string name="logout">Logout</string>
     <string name="ime_koktela">Ime koktela</string>
     <string name="favorite_button">Favorite Button</string>
-
+    <string name="failed_fetch">Failed to fetch cocktails</string>
+    <string name="error_loading">Error loading data</string>
 </resources>

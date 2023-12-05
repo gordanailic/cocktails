@@ -29,7 +29,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         initUI()
     }
 
-
     private fun initUI() {
         binding.logout.setOnClickListener {
             Toast.makeText(context, "You clicked logout!", Toast.LENGTH_SHORT).show()

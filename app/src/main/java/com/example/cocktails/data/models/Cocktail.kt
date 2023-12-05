@@ -1,9 +1,12 @@
 package com.example.cocktails.data.models
 
+import com.google.gson.annotations.SerializedName
+
+
 data class Cocktail(
-    val id: Int,
-    val name: String,
-    val image: Int,
-    // TODO: check this
+    @SerializedName("idDrink") val id: Int,
+    @SerializedName("strDrink") val name: String,
+    @SerializedName("strDrinkThumb") val image: String,
+    @SerializedName("strAlcoholic") val alcoholic: String,
     val favorite: Boolean
 )
