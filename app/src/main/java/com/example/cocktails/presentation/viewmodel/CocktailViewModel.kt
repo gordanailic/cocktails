@@ -20,10 +20,14 @@ import javax.inject.Inject
 class CocktailViewModel @Inject constructor(
     private val application: Application, private val cocktailRepository: CocktailRepository
 ) : ViewModel() {
+    companion object {
+        private const val debouncePeriod = 500L
+    }
+
     private val _cocktails = MutableLiveData<Resource<List<Cocktail>>>()
     val cocktails: LiveData<Resource<List<Cocktail>>> get() = _cocktails
     private var searchJob: Job? = null
-    private val debouncePeriod = 500L
+
 
     private val handler = CoroutineExceptionHandler { _, exception ->
         _cocktails.value =
@@ -38,7 +42,7 @@ class CocktailViewModel @Inject constructor(
             if (query.isNotEmpty()) {
                 delay(debouncePeriod)
             }
-            val response = cocktailRepository.searchByName(query)
+            val response = cocktailRepository.getCocktails(query)
             if (response.isSuccessful) {
                 val cocktails = response.body()?.drinks ?: emptyList()
 
@@ -47,7 +51,6 @@ class CocktailViewModel @Inject constructor(
                 _cocktails.value =
                     Resource.Error(application.applicationContext.resources.getString(R.string.failed_fetch))
             }
-
         }
     }
 }
