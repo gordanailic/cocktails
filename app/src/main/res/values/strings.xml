@@ -15,4 +15,6 @@
     <string name="favorite_button">Favorite Button</string>
     <string name="failed_fetch">Failed to fetch cocktails</string>
     <string name="error_loading">Error loading data</string>
+    <string name="search_by_name">Search by name</string>
+    <string name="nothing_to_show_please_search_something_else">Nothing to show please search something else</string>
 </resources>

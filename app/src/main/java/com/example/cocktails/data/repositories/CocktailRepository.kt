@@ -5,6 +5,7 @@ import retrofit2.Response
 
 interface CocktailRepository {
 
-    suspend fun getAllCocktails(): Response<CocktailResponse>
+    suspend fun getCocktails(name: String): Response<CocktailResponse>
+
 
 }
