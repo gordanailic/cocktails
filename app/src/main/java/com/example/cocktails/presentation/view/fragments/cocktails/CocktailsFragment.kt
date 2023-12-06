@@ -8,9 +8,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
@@ -48,12 +49,19 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                Toast.makeText(context, "You clicked search!", Toast.LENGTH_SHORT).show()
+
+                if (binding.inputEt.isVisible) {
+                    binding.inputEt.visibility = View.GONE
+                } else {
+                    binding.inputEt.visibility = View.VISIBLE
+
+                }
                 return true
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
         setupRecyclerView()
         initObservers()
+        initListeners()
     }
 
     private fun initObservers() {
@@ -61,12 +69,16 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
         cocktailViewModel.cocktails.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Success -> {
-                    binding.rvCocktails.visibility = View.VISIBLE
-                    binding.progressBar.visibility = View.GONE
-
                     val cocktailsList = resource.data
-                    adapter.submitList(cocktailsList)
-
+                    if (cocktailsList.isEmpty()) {
+                        binding.labelNothing.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
+                    } else {
+                        binding.rvCocktails.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
+                        binding.labelNothing.visibility = View.GONE
+                        adapter.submitList(cocktailsList)
+                    }
                 }
 
                 is Resource.Loading -> {
@@ -79,9 +91,7 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
                     binding.rvCocktails.visibility = View.GONE
 
                     val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-                    builder
-                        .setMessage("Error loading data: ${resource.message}")
-                        .setTitle("Error")
+                    builder.setMessage("Error loading data: ${resource.message}").setTitle("Error")
                         .setPositiveButton("OK") { _, _ ->
                         }
 
@@ -91,7 +101,8 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
                 }
             }
         }
-        cocktailViewModel.fetchAllCocktails()
+        cocktailViewModel.fetchAllCocktails("")
+
 
     }
 
@@ -99,6 +110,13 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
         binding.rvCocktails.layoutManager = GridLayoutManager(context, 2)
         adapter = CocktailAdapter()
         binding.rvCocktails.adapter = adapter
+    }
+
+    private fun initListeners() {
+        binding.inputEt.doAfterTextChanged {
+            val filter = it.toString()
+            cocktailViewModel.fetchAllCocktails(filter)
+        }
     }
 
     override fun onDestroyView() {
