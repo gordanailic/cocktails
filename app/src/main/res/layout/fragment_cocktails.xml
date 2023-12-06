@@ -9,19 +9,19 @@
     tools:context=".presentation.view.fragments.cocktails.CocktailsFragment">
 
     <EditText
-        style="@style/ProfileStyleEditText"
         android:id="@+id/inputEt"
+        style="@style/ProfileStyleEditText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:autofillHints=""
         android:hint="@string/search_by_name"
         android:inputType="text"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.95"
-        app:layout_constraintHeight_percent="0.07"
         tools:ignore="LabelFor" />
 
     <View
@@ -33,7 +33,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputEt"
-
         />
 
 
@@ -59,18 +58,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layoutAnimation="@anim/layout_animation"
         app:layout_constraintTop_toBottomOf="@id/search_label" />
 
     <TextView
         android:id="@+id/label_nothing"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="visible"
-        android:text="@string/nothing_to_show_please_search_something_else"
-        android:gravity="center"
         android:background="@drawable/background_home"
         android:clipToPadding="false"
+        android:gravity="center"
         android:paddingBottom="?android:attr/actionBarSize"
+        android:text="@string/nothing_to_show_please_search_something_else"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
