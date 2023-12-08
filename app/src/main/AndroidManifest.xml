@@ -20,8 +20,9 @@
         tools:targetApi="32">
 
         <activity
-            android:name=".presentation.view.activities.SplashScreenActivity"
+            android:name=".presentation.activities.SplashScreenActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.Cocktails.MySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
