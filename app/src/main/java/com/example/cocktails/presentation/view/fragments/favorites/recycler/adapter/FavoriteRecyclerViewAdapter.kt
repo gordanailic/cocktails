@@ -2,7 +2,9 @@ package com.example.cocktails.presentation.view.fragments.favorites.recycler.ada
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cocktails.data.models.FavoriteRecyclerViewItem
 import com.example.cocktails.databinding.ItemAlcoholicBinding
 import com.example.cocktails.databinding.ItemFavoriteBinding
@@ -53,6 +55,19 @@ class FavoriteRecyclerViewAdapter :
             is FavoriteRecyclerViewItem.Alcoholic -> ALCOHOLIC_VIEW
             is FavoriteRecyclerViewItem.Favorite -> FAVORITE_VIEW
             else -> throw IllegalArgumentException("Invalid item type")
+        }
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        (recyclerView.layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return when (getItemViewType(position)) {
+                    ALCOHOLIC_VIEW -> 2
+                    FAVORITE_VIEW -> 1
+                    else -> throw IllegalArgumentException("Invalid ViewType Provided")
+                }
+            }
         }
     }
 }

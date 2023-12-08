@@ -102,15 +102,6 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     private fun setupRecyclerView() {
         val layoutManager = GridLayoutManager(activity, 2)
-        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return when (adapter.getItemViewType(position)) {
-                    ALCOHOLIC_VIEW -> 2
-                    FAVORITE_VIEW -> 1
-                    else -> throw IllegalArgumentException("Invalid ViewType Provided")
-                }
-            }
-        }
         binding.rvFavorites.layoutManager = layoutManager
         adapter = FavoriteRecyclerViewAdapter()
         adapter.submitList(items)
