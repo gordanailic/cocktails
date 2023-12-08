@@ -1,0 +1,19 @@
+package com.example.cocktails.presentation.fragments.cocktails.recycler.diff
+
+import androidx.recyclerview.widget.DiffUtil
+import com.example.cocktails.data.models.Cocktail
+
+class CocktailDiffcallback : DiffUtil.ItemCallback<Cocktail>() {
+
+    override fun areItemsTheSame(oldItem: Cocktail, newItem: Cocktail): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Cocktail, newItem: Cocktail): Boolean {
+        return oldItem.name == newItem.name &&
+                oldItem.image == newItem.image &&
+                oldItem.alcoholic == newItem.alcoholic &&
+                oldItem.favorite == newItem.favorite
+    }
+
+}
