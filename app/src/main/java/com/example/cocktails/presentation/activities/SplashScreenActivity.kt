@@ -1,4 +1,4 @@
-package com.example.cocktails.presentation.view.activities
+package com.example.cocktails.presentation.activities
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity

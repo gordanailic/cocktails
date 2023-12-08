@@ -1,4 +1,4 @@
-package com.example.cocktails.presentation.view.fragments
+package com.example.cocktails.presentation.fragments.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

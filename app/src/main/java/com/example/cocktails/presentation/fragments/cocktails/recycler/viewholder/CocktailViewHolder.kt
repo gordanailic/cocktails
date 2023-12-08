@@ -1,4 +1,4 @@
-package com.example.cocktails.presentation.view.fragments.cocktails.recycler.viewholder
+package com.example.cocktails.presentation.fragments.cocktails.recycler.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide

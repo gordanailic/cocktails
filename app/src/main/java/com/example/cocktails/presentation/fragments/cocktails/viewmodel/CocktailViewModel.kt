@@ -1,4 +1,4 @@
-package com.example.cocktails.presentation.viewmodel
+package com.example.cocktails.presentation.fragments.cocktails.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.LiveData

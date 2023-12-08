@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_home"
 
-    tools:context=".presentation.view.fragments.cocktails.CocktailsFragment">
+    tools:context=".presentation.fragments.cocktails.CocktailsFragment">
 
     <EditText
         android:id="@+id/inputEt"

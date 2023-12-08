@@ -1,4 +1,4 @@
-package com.example.cocktails.presentation.view.fragments.cocktails.recycler.diff
+package com.example.cocktails.presentation.fragments.cocktails.recycler.diff
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.cocktails.data.models.Cocktail

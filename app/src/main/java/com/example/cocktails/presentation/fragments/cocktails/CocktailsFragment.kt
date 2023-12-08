@@ -1,4 +1,4 @@
-package com.example.cocktails.presentation.view.fragments.cocktails
+package com.example.cocktails.presentation.fragments.cocktails
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cocktails.R
 import com.example.cocktails.data.models.Resource
 import com.example.cocktails.databinding.FragmentCocktailsBinding
-import com.example.cocktails.presentation.view.fragments.cocktails.recycler.adapter.CocktailAdapter
-import com.example.cocktails.presentation.viewmodel.CocktailViewModel
+import com.example.cocktails.presentation.fragments.cocktails.recycler.adapter.CocktailAdapter
+import com.example.cocktails.presentation.fragments.cocktails.viewmodel.CocktailViewModel
 import timber.log.Timber
 
 class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
