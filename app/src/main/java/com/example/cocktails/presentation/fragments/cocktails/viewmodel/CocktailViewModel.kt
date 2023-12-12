@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cocktails.R
 import com.example.cocktails.data.models.Cocktail
-import com.example.cocktails.data.models.CocktailState
+import com.example.cocktails.presentation.fragments.favorites.viewmodel.CocktailState
 import com.example.cocktails.data.models.Resource
 import com.example.cocktails.data.repositories.CocktailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -69,14 +69,7 @@ class CocktailViewModel @Inject constructor(
 
     fun insertCocktail(cocktail: Cocktail) {
         viewModelScope.launch(handler) {
-            val cocktailInsert = Cocktail(
-                cocktail.id,
-                cocktail.name,
-                cocktail.image,
-                cocktail.alcoholic,
-                cocktail.favorite
-            )
-            val response = cocktailRepository.insertCocktail(cocktailInsert)
+            val response = cocktailRepository.insertCocktail(cocktail)
             if (response > 0) {
                 cocktailState.value = CocktailState.SuccessAddOrDelete
             } else {

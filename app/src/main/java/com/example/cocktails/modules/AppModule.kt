@@ -55,7 +55,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMyApi(
+    fun provideCocktailApi(
         gson: Gson,
         httpClient: OkHttpClient,
         constants: Constants

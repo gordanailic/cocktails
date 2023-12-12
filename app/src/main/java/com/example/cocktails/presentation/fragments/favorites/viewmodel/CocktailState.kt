@@ -1,4 +1,4 @@
-package com.example.cocktails.data.models
+package com.example.cocktails.presentation.fragments.favorites.viewmodel
 
 sealed class CocktailState {
     data object SuccessAddOrDelete : CocktailState()
