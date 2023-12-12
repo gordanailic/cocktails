@@ -8,7 +8,7 @@ import retrofit2.Response
 interface CocktailRepository {
 
     suspend fun getCocktails(name: String): Response<CocktailResponse>
-    suspend fun getCocktailsById(): List<Int>
+    suspend fun getFavoritesIDs(): List<Int>
 
     fun getFavorites(): LiveData<List<Cocktail>>
 

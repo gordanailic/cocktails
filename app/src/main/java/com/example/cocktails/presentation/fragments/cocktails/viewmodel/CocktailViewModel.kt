@@ -53,7 +53,7 @@ class CocktailViewModel @Inject constructor(
             val response = cocktailRepository.getCocktails(query)
             if (response.isSuccessful) {
                 val cocktails = response.body()?.drinks ?: emptyList()
-                getCocktailById()
+                getFavoritesIDs()
                 for (cocktail in cocktails) {
                     if (favoritesItem.contains(cocktail.id)) {
                         cocktail.favorite = true
@@ -98,8 +98,8 @@ class CocktailViewModel @Inject constructor(
         }
     }
 
-    private suspend fun getCocktailById() {
-        favoritesItem = cocktailRepository.getCocktailsById()
+    private suspend fun getFavoritesIDs() {
+        favoritesItem = cocktailRepository.getFavoritesIDs()
 
     }
 

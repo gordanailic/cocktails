@@ -16,8 +16,8 @@ class CocktailRepositoryImpl(
         return api.getCocktails(name)
     }
 
-    override suspend fun getCocktailsById(): List<Int> {
-        return localDataSource.getCocktailsById()
+    override suspend fun getFavoritesIDs(): List<Int> {
+        return localDataSource.getFavoritesIDs()
     }
 
     override fun getFavorites(): LiveData<List<Cocktail>> {

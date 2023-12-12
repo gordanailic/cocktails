@@ -20,5 +20,5 @@ interface CocktailDao {
     suspend fun deleteCocktail(cocktail: Cocktail): Int
 
     @Query("SELECT id FROM cocktail")
-    suspend fun getCocktailsById(): List<Int>
+    suspend fun getFavoritesIDs(): List<Int>
 }
