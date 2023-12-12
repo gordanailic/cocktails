@@ -1,6 +1,10 @@
 package com.example.cocktails.modules
 
+import android.content.Context
+import androidx.room.Room
 import com.example.cocktails.Constants
+import com.example.cocktails.data.datasources.local.CocktailDao
+import com.example.cocktails.data.datasources.local.CocktailDataBase
 import com.example.cocktails.data.datasources.remote.CocktailsService
 import com.example.cocktails.data.repositories.CocktailRepository
 import com.example.cocktails.data.repositories.CocktailRepositoryImpl
@@ -9,6 +13,7 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -22,7 +27,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMyRepository(api: CocktailsService): CocktailRepository = CocktailRepositoryImpl(api)
+    fun provideMyRepository(api: CocktailsService, localDataSource: CocktailDao): CocktailRepository = CocktailRepositoryImpl(localDataSource, api)
 
     @Singleton
     @Provides
@@ -58,5 +63,19 @@ object AppModule {
             .build()
             .create(CocktailsService::class.java)
     }
+
+    @Singleton // Tell Dagger-Hilt to create a singleton accessible everywhere in ApplicationCompenent (i.e. everywhere in the application)
+    @Provides
+    fun provideYourDatabase(
+        @ApplicationContext app: Context
+    ) = Room.databaseBuilder(
+        app,
+        CocktailDataBase::class.java,
+        "CocktailsDb"
+    ).build() // The reason we can construct a database for the repo
+
+    @Singleton
+    @Provides
+    fun provideYourDao(db: CocktailDataBase) = db.getCocktailDao() // The reason we can implement a Dao for the database
 
 }

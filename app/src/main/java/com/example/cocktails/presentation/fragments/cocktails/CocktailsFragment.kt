@@ -17,6 +17,7 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cocktails.R
+import com.example.cocktails.data.models.Cocktail
 import com.example.cocktails.data.models.Resource
 import com.example.cocktails.databinding.FragmentCocktailsBinding
 import com.example.cocktails.presentation.fragments.cocktails.recycler.adapter.CocktailAdapter
@@ -102,13 +103,19 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
             }
         }
         cocktailViewModel.fetchAllCocktails("")
-
-
     }
 
     private fun setupRecyclerView() {
         binding.rvCocktails.layoutManager = GridLayoutManager(context, 2)
         adapter = CocktailAdapter()
+        adapter.onImageClickListener = { cocktail: Cocktail, _: Int ->
+            if (cocktail.favorite) {
+                cocktailViewModel.deleteCoctail(cocktail)
+            } else {
+                cocktailViewModel.insertCoctail(cocktail)
+            }
+            cocktail.favorite = !cocktail.favorite
+        }
         binding.rvCocktails.adapter = adapter
     }
 
@@ -117,6 +124,8 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
             val filter = it.toString()
             cocktailViewModel.fetchAllCocktails(filter)
         }
+
+
     }
 
     override fun onDestroyView() {
