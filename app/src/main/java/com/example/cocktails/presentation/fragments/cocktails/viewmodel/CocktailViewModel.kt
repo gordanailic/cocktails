@@ -54,7 +54,7 @@ class CocktailViewModel @Inject constructor(
             if (response.isSuccessful) {
                 val cocktails = response.body()?.drinks ?: emptyList()
                 getFavoritesIDs()
-                for (cocktail in cocktails) {
+                cocktails.forEach{cocktail ->
                     if (favoritesItem.contains(cocktail.id)) {
                         cocktail.favorite = true
                     }
