@@ -6,7 +6,9 @@ import com.example.cocktails.R
 import com.example.cocktails.data.models.Cocktail
 import com.example.cocktails.databinding.ItemCocktailBinding
 
-class CocktailViewHolder(private val itemBinding: ItemCocktailBinding) :
+class CocktailViewHolder(
+    private val itemBinding: ItemCocktailBinding,
+) :
     RecyclerView.ViewHolder(itemBinding.root) {
 
     fun bind(cocktail: Cocktail) {
@@ -19,10 +21,8 @@ class CocktailViewHolder(private val itemBinding: ItemCocktailBinding) :
         }
     }
 
-    fun setImage(image: Int) {
-        Glide.with(itemBinding.favoriteButton.context).
-        load(image).
-        into(itemBinding.favoriteButton)
+    private fun setImage(image: Int) {
+        Glide.with(itemBinding.favoriteButton.context).load(image).into(itemBinding.favoriteButton)
     }
 
 }
