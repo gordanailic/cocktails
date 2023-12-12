@@ -110,9 +110,9 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
         adapter = CocktailAdapter()
         adapter.onImageClickListener = { cocktail: Cocktail, _: Int ->
             if (cocktail.favorite) {
-                cocktailViewModel.deleteCoctail(cocktail)
+                cocktailViewModel.deleteCocktail(cocktail)
             } else {
-                cocktailViewModel.insertCoctail(cocktail)
+                cocktailViewModel.insertCocktail(cocktail)
             }
             cocktail.favorite = !cocktail.favorite
         }

@@ -17,11 +17,11 @@ class CocktailRepositoryImpl(
     }
 
     override suspend fun getCocktailsById(): List<Int> {
-        return localDataSource.getCocktailById()
+        return localDataSource.getCocktailsById()
     }
 
     override fun getFavorites(): LiveData<List<Cocktail>> {
-        return localDataSource.getFavorite()
+        return localDataSource.getFavorites()
     }
 
     override suspend fun insertCocktail(cocktail: Cocktail): Long {

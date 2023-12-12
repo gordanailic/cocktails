@@ -67,7 +67,7 @@ class CocktailViewModel @Inject constructor(
         }
     }
 
-    fun insertCoctail(cocktail: Cocktail) {
+    fun insertCocktail(cocktail: Cocktail) {
         viewModelScope.launch(handler) {
             val cocktailInsert = Cocktail(
                 cocktail.id,
@@ -86,7 +86,7 @@ class CocktailViewModel @Inject constructor(
         }
     }
 
-    fun deleteCoctail(cocktail: Cocktail) {
+    fun deleteCocktail(cocktail: Cocktail) {
         viewModelScope.launch(handler) {
             val response = cocktailRepository.deleteCocktail(cocktail)
             if (response > 0) {

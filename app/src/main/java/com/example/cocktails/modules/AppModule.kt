@@ -27,7 +27,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMyRepository(api: CocktailsService, localDataSource: CocktailDao): CocktailRepository = CocktailRepositoryImpl(localDataSource, api)
+    fun provideCocktailRepository(
+        api: CocktailsService,
+        localDataSource: CocktailDao
+    ): CocktailRepository = CocktailRepositoryImpl(localDataSource, api)
 
     @Singleton
     @Provides
@@ -44,6 +47,7 @@ object AppModule {
         return httpClient.build()
 
     }
+
     @Provides
     @Singleton
     fun provideConstants(): Constants = Constants
@@ -66,7 +70,7 @@ object AppModule {
 
     @Singleton // Tell Dagger-Hilt to create a singleton accessible everywhere in ApplicationCompenent (i.e. everywhere in the application)
     @Provides
-    fun provideYourDatabase(
+    fun provideCocktailDataBase(
         @ApplicationContext app: Context
     ) = Room.databaseBuilder(
         app,
@@ -76,6 +80,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideYourDao(db: CocktailDataBase) = db.getCocktailDao() // The reason we can implement a Dao for the database
+    fun provideCocktailDao(db: CocktailDataBase) =
+        db.getCocktailDao() // The reason we can implement a Dao for the database
 
 }

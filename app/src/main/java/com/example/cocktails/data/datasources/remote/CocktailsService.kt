@@ -10,5 +10,4 @@ interface CocktailsService {
     suspend fun getCocktails(@Query("s") query: String): Response<CocktailResponse>
 
 
-
 }

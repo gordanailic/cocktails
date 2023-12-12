@@ -14,11 +14,11 @@ interface CocktailDao {
     suspend fun insertCocktail(cocktail: Cocktail): Long
 
     @Query("SELECT * FROM cocktail ORDER BY alcoholic")
-    fun getFavorite(): LiveData<List<Cocktail>>
+    fun getFavorites(): LiveData<List<Cocktail>>
 
     @Delete
     suspend fun deleteCocktail(cocktail: Cocktail): Int
 
     @Query("SELECT id FROM cocktail")
-    suspend fun getCocktailById(): List<Int>
+    suspend fun getCocktailsById(): List<Int>
 }

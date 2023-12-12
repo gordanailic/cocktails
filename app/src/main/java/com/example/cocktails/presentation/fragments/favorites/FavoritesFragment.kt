@@ -45,10 +45,10 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     private fun initObservers() {
         favoritesViewModel.favoritesList.observe(viewLifecycleOwner) { resource ->
-            if(resource.isEmpty()){
+            if (resource.isEmpty()) {
                 binding.labelNothing.visibility = View.VISIBLE
                 binding.rvFavorites.visibility = View.GONE
-            }else{
+            } else {
                 binding.labelNothing.visibility = View.GONE
                 binding.rvFavorites.visibility = View.VISIBLE
                 adapter.submitList(resource)

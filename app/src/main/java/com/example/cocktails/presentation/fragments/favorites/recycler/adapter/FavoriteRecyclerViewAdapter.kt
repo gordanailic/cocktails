@@ -60,14 +60,15 @@ class FavoriteRecyclerViewAdapter :
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
-        (recyclerView.layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return when (getItemViewType(position)) {
-                    ALCOHOLIC_VIEW -> 2
-                    FAVORITE_VIEW -> 1
-                    else -> throw IllegalArgumentException("Invalid ViewType Provided")
+        (recyclerView.layoutManager as GridLayoutManager).spanSizeLookup =
+            object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return when (getItemViewType(position)) {
+                        ALCOHOLIC_VIEW -> 2
+                        FAVORITE_VIEW -> 1
+                        else -> throw IllegalArgumentException("Invalid ViewType Provided")
+                    }
                 }
             }
-        }
     }
 }
