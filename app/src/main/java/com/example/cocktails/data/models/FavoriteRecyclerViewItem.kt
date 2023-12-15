@@ -2,7 +2,7 @@ package com.example.cocktails.data.models
 
 sealed class FavoriteRecyclerViewItem {
 
-    class Alcoholic(
+    class Category(
         val alcoholic: String
     ) : FavoriteRecyclerViewItem()
 

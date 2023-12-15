@@ -15,6 +15,8 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cocktails.R
 import com.example.cocktails.data.models.Cocktail
@@ -26,11 +28,14 @@ import timber.log.Timber
 
 class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
 
+    val args: CocktailsFragmentArgs by navArgs()
 
     private var _binding: FragmentCocktailsBinding? = null
     private val binding get() = _binding!!
     private val cocktailViewModel: CocktailViewModel by hiltNavGraphViewModels(R.id.cocktailsFragment)
     private lateinit var adapter: CocktailAdapter
+    private var filterBy: String = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -43,6 +48,9 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        filterBy = args.argSpec
+
+
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -50,13 +58,21 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                when (menuItem.itemId) {
+                    R.id.action_search -> {
+                        if (binding.inputEt.isVisible) {
+                            binding.inputEt.visibility = View.GONE
+                        } else {
+                            binding.inputEt.visibility = View.VISIBLE
+                        }
+                    }
 
-                if (binding.inputEt.isVisible) {
-                    binding.inputEt.visibility = View.GONE
-                } else {
-                    binding.inputEt.visibility = View.VISIBLE
-
+                    R.id.filter -> {
+                        val navController = findNavController()
+                        navController.navigate(R.id.filterFragment)
+                    }
                 }
+
                 return true
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
@@ -66,7 +82,6 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
     }
 
     private fun initObservers() {
-
         cocktailViewModel.cocktails.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Success -> {
@@ -124,8 +139,6 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
             val filter = it.toString()
             cocktailViewModel.fetchAllCocktails(filter)
         }
-
-
     }
 
     override fun onDestroyView() {

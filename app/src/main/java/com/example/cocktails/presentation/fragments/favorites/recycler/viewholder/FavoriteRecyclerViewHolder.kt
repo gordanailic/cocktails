@@ -12,7 +12,7 @@ sealed class FavoriteRecyclerViewHolder(itemBinding: ViewBinding) :
 
     class AlcoholicViewHolder(private val itemBinding: ItemAlcoholicBinding) :
         FavoriteRecyclerViewHolder(itemBinding) {
-        fun bind(alcoholic: FavoriteRecyclerViewItem.Alcoholic) {
+        fun bind(alcoholic: FavoriteRecyclerViewItem.Category) {
             itemBinding.alcoholic.text = alcoholic.alcoholic
         }
     }

@@ -8,7 +8,7 @@ class FavoriteRecyclerViewItemDiffCallback : DiffUtil.ItemCallback<FavoriteRecyc
         oldItem: FavoriteRecyclerViewItem, newItem: FavoriteRecyclerViewItem
     ): Boolean {
         return when {
-            oldItem is FavoriteRecyclerViewItem.Alcoholic && newItem is FavoriteRecyclerViewItem.Alcoholic -> true
+            oldItem is FavoriteRecyclerViewItem.Category && newItem is FavoriteRecyclerViewItem.Category -> true
             oldItem is FavoriteRecyclerViewItem.Favorite && newItem is FavoriteRecyclerViewItem.Favorite -> oldItem.id == newItem.id
 
             else -> false
@@ -19,7 +19,7 @@ class FavoriteRecyclerViewItemDiffCallback : DiffUtil.ItemCallback<FavoriteRecyc
         oldItem: FavoriteRecyclerViewItem, newItem: FavoriteRecyclerViewItem
     ): Boolean {
         return when {
-            oldItem is FavoriteRecyclerViewItem.Alcoholic && newItem is FavoriteRecyclerViewItem.Alcoholic ->
+            oldItem is FavoriteRecyclerViewItem.Category && newItem is FavoriteRecyclerViewItem.Category ->
                 oldItem.alcoholic == newItem.alcoholic
 
             oldItem is FavoriteRecyclerViewItem.Favorite && newItem is FavoriteRecyclerViewItem.Favorite ->

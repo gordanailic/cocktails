@@ -46,13 +46,13 @@ class FavoriteRecyclerViewAdapter :
     override fun onBindViewHolder(holder: FavoriteRecyclerViewHolder, position: Int) {
         when (holder) {
             is FavoriteRecyclerViewHolder.FavoritesViewHolder -> holder.bind(getItem(position) as FavoriteRecyclerViewItem.Favorite)
-            is FavoriteRecyclerViewHolder.AlcoholicViewHolder -> holder.bind(getItem(position) as FavoriteRecyclerViewItem.Alcoholic)
+            is FavoriteRecyclerViewHolder.AlcoholicViewHolder -> holder.bind(getItem(position) as FavoriteRecyclerViewItem.Category)
         }
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is FavoriteRecyclerViewItem.Alcoholic -> ALCOHOLIC_VIEW
+            is FavoriteRecyclerViewItem.Category -> ALCOHOLIC_VIEW
             is FavoriteRecyclerViewItem.Favorite -> FAVORITE_VIEW
             else -> throw IllegalArgumentException("Invalid item type")
         }

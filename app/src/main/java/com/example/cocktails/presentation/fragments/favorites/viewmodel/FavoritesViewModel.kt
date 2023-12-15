@@ -16,9 +16,9 @@ class FavoritesViewModel @Inject constructor(
     val favoritesList: LiveData<List<FavoriteRecyclerViewItem>> =
         cocktailRepository.getFavorites().map { list ->
             val listItem: MutableList<FavoriteRecyclerViewItem> = mutableListOf()
-            list.forEach{cocktail ->
+            list.forEach { cocktail ->
                 if (listItem.any { favItem ->
-                        favItem is FavoriteRecyclerViewItem.Alcoholic && favItem.alcoholic == cocktail.alcoholic
+                        favItem is FavoriteRecyclerViewItem.Category && favItem.alcoholic == cocktail.alcoholic
                     }) {
                     val favoriteItem: FavoriteRecyclerViewItem.Favorite =
                         FavoriteRecyclerViewItem.Favorite(
@@ -27,8 +27,8 @@ class FavoritesViewModel @Inject constructor(
                     listItem.add(favoriteItem)
 
                 } else {
-                    val labelItem: FavoriteRecyclerViewItem.Alcoholic =
-                        FavoriteRecyclerViewItem.Alcoholic(cocktail.alcoholic)
+                    val labelItem: FavoriteRecyclerViewItem.Category =
+                        FavoriteRecyclerViewItem.Category(cocktail.alcoholic)
                     listItem.add(labelItem)
                     val favoriteItem: FavoriteRecyclerViewItem.Favorite =
                         FavoriteRecyclerViewItem.Favorite(
@@ -40,6 +40,4 @@ class FavoritesViewModel @Inject constructor(
             }
             return@map listItem
         }
-
-
 }
