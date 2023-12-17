@@ -1,5 +1,6 @@
 package com.example.cocktails.presentation.fragments.specific
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +10,19 @@ import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cocktails.R
 import com.example.cocktails.data.models.Filter
 import com.example.cocktails.data.models.Resource
 import com.example.cocktails.databinding.FragmentSpecificfilterBinding
 import com.example.cocktails.presentation.fragments.specific.recycler.adapter.SpecificFilterAdapter
 import com.example.cocktails.presentation.fragments.specific.viewmodel.SpecificFilterViewModel
+import timber.log.Timber
+
 
 class SpecificFilterFragment : Fragment(R.layout.fragment_specificfilter) {
-
 
     private var _binding: FragmentSpecificfilterBinding? = null
 
@@ -27,6 +31,7 @@ class SpecificFilterFragment : Fragment(R.layout.fragment_specificfilter) {
     private val specificFilterViewModel: SpecificFilterViewModel by hiltNavGraphViewModels(R.id.specificFilterFragment)
     private lateinit var adapter: SpecificFilterAdapter
     private var filterBy: String = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -43,49 +48,84 @@ class SpecificFilterFragment : Fragment(R.layout.fragment_specificfilter) {
     }
 
     private fun setupRecyclerView() {
-        binding.rvFilter.layoutManager = LinearLayoutManager(context)
+        val recyclerView: RecyclerView = binding.rvFilter
+        val layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = layoutManager
+
+        val dividerItemDecoration =
+            DividerItemDecoration(recyclerView.context,layoutManager.orientation)
+
+        recyclerView.addItemDecoration(dividerItemDecoration)
+
         adapter = SpecificFilterAdapter()
         adapter.onItemClickListener = { filter: Filter, _: Int ->
-            val args = bundleOf("argSpec" to filter.getLabel())
+            val args = bundleOf("argSpec" to filter.getLabel(), "filterBy" to filterBy)
             findNavController().navigate(
-                R.id.action_specificFilterFragment_to_cocktailsFragment,
-                args
+                R.id.action_specificFilterFragment_to_cocktailsFragment, args
             )
 
         }
-        binding.rvFilter.adapter = adapter
+        recyclerView.adapter = adapter
     }
 
     private fun initObservers() {
         specificFilterViewModel.cocktails.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Success -> {
+                    val filterList = resource.data
+
+                    binding.rvFilter.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+
                     when (filterBy) {
                         "a" -> {
-                            binding.filterLabel.text = "Filter cocktails by Acoholic or not"
+                            setLabel(R.string.filter_alcoholic)
                         }
 
                         "c" -> {
-
+                            setLabel(R.string.filter_category)
                         }
 
                         "g" -> {
-
+                            setLabel(R.string.filter_glass)
                         }
 
                         "i" -> {
+                            setLabel(R.string.filter_ingredient)
 
                         }
                     }
-                    val filterList = resource.data
+
                     adapter.submitList(filterList)
+
                 }
 
-                else -> {}
-            }
+                is Resource.Loading -> {
+                    binding.rvFilter.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
+                }
 
+                is Resource.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.rvFilter.visibility = View.GONE
+
+                    val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+                    builder.setMessage("Error loading data: ${resource.message}").setTitle("Error")
+                        .setPositiveButton("OK") { _, _ ->
+                        }
+
+                    val dialog: AlertDialog = builder.create()
+                    dialog.show()
+                    Timber.e("Error loading data: ${resource.message}")
+                }
+            }
         }
         specificFilterViewModel.fetchCocktailsByCategory(filterBy)
+    }
+
+    private fun setLabel(filterResource: Int) {
+        val filterLabel = binding.filterLabel
+        filterLabel.text = resources.getString(filterResource)
     }
 
     override fun onDestroyView() {

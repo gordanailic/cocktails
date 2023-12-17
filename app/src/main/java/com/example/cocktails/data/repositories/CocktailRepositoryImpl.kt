@@ -21,6 +21,9 @@ class CocktailRepositoryImpl(
         return api.getSpecificCategory(filterMap)
     }
 
+    override suspend fun getCocktailsByFilter(filterMap: Map<String, String>): Response<CocktailResponse> {
+        return api.getCocktailsByFilter(filterMap)
+    }
 
     override suspend fun getFavoritesIDs(): List<Int> {
         return localDataSource.getFavoritesIDs()

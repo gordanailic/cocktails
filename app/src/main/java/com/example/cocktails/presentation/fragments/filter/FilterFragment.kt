@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
+import com.example.cocktails.Constants
 import com.example.cocktails.R
 import com.example.cocktails.databinding.FragmentFilterBinding
 import com.example.cocktails.presentation.fragments.filter.recycler.adapter.FilterAdapter
@@ -17,10 +17,8 @@ class FilterFragment : Fragment(R.layout.fragment_filter) {
 
     private var _binding: FragmentFilterBinding? = null
 
-    private val args: FilterFragmentArgs by navArgs()
     private val binding get() = _binding!!
     private lateinit var adapter: FilterAdapter
-    private val names = arrayListOf<String>()
 
 
     override fun onCreateView(
@@ -32,20 +30,10 @@ class FilterFragment : Fragment(R.layout.fragment_filter) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        createList()
-        adapter = FilterAdapter(requireActivity(), names)
+        adapter = FilterAdapter(requireActivity(), Constants.names)
         binding.listItem.adapter = adapter
 
         initUI()
-    }
-
-    //prebaci u const
-    private fun createList() {
-        names.clear()
-        names.add("Alcoholic or not")
-        names.add("Category")
-        names.add("Glass used")
-        names.add("Ingredient")
     }
 
     private fun initUI() {

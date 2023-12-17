@@ -16,14 +16,31 @@
         android:layout_height="0dp"
         android:autofillHints=""
         android:hint="@string/search_by_name"
+        android:textSize="17sp"
         android:inputType="text"
         android:visibility="gone"
+        android:saveEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.95"
         tools:ignore="LabelFor" />
+    <TextView
+        android:id="@+id/filer_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        android:background="#AAF091"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/alcoholic"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputEt" />
 
     <View
         android:id="@+id/separator"
@@ -33,7 +50,7 @@
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputEt"
+        app:layout_constraintTop_toBottomOf="@id/filer_label"
         />
 
 

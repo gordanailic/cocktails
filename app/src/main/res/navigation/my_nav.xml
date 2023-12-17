@@ -13,7 +13,11 @@
         <argument
             android:name="argSpec"
             app:argType="string"
-            android:defaultValue='""' />
+            android:defaultValue='' />
+        <argument
+            android:name="filterBy"
+            app:argType="string"
+            android:defaultValue='' />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -49,6 +53,8 @@
             android:defaultValue='""' />
         <action
             android:id="@+id/action_specificFilterFragment_to_cocktailsFragment"
-            app:destination="@id/cocktailsFragment" />
+            app:destination="@id/cocktailsFragment"
+            app:popUpTo="@id/cocktailsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

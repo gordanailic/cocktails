@@ -27,4 +27,9 @@
     <string name="glass_used">Glass used</string>
     <string name="ingredient">Ingredient</string>
     <string name="first_letter">First letter</string>
+    <string name = "filter_alcoholic">Filter cocktails by Acoholic or not</string>
+    <string name="filter_category">Filter cocktails by Category</string>
+    <string name="filter_glass">Filter cocktails by Glass used</string>
+    <string name="filter_ingredient">Filter cocktails by Ingredient</string>
+
 </resources>

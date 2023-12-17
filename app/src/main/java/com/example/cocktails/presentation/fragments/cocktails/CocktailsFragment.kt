@@ -28,27 +28,27 @@ import timber.log.Timber
 
 class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
 
-    val args: CocktailsFragmentArgs by navArgs()
+    private val args: CocktailsFragmentArgs by navArgs()
 
     private var _binding: FragmentCocktailsBinding? = null
     private val binding get() = _binding!!
     private val cocktailViewModel: CocktailViewModel by hiltNavGraphViewModels(R.id.cocktailsFragment)
     private lateinit var adapter: CocktailAdapter
+    private var argSpec: String = ""
     private var filterBy: String = ""
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-
+        argSpec = args.argSpec
+        filterBy = args.filterBy
         _binding = FragmentCocktailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        filterBy = args.argSpec
 
 
         val menuHost: MenuHost = requireActivity()
@@ -90,6 +90,13 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
                         binding.labelNothing.visibility = View.VISIBLE
                         binding.progressBar.visibility = View.GONE
                     } else {
+                        if(filterBy.isNotEmpty()){
+                            binding.filerLabel.visibility = View.VISIBLE
+                            binding.filerLabel.text = argSpec
+                        }else{
+                            binding.filerLabel.visibility = View.GONE
+
+                        }
                         binding.rvCocktails.visibility = View.VISIBLE
                         binding.progressBar.visibility = View.GONE
                         binding.labelNothing.visibility = View.GONE
@@ -98,11 +105,13 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
                 }
 
                 is Resource.Loading -> {
+                    binding.filerLabel.visibility = View.GONE
                     binding.rvCocktails.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
                 }
 
                 is Resource.Error -> {
+                    binding.filerLabel.visibility = View.GONE
                     binding.progressBar.visibility = View.GONE
                     binding.rvCocktails.visibility = View.GONE
 
@@ -117,7 +126,11 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
                 }
             }
         }
-        cocktailViewModel.fetchAllCocktails("")
+        if (filterBy.isEmpty()) {
+            cocktailViewModel.fetchAllCocktails("")
+        } else {
+            cocktailViewModel.fetchCocktailsByFilter(argSpec, filterBy)
+        }
     }
 
     private fun setupRecyclerView() {
@@ -145,5 +158,6 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
         super.onDestroyView()
         _binding = null
     }
+
 
 }

@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cocktails.R
 import com.example.cocktails.data.models.Cocktail
-import com.example.cocktails.presentation.fragments.favorites.viewmodel.CocktailState
 import com.example.cocktails.data.models.Resource
 import com.example.cocktails.data.repositories.CocktailRepository
+import com.example.cocktails.presentation.fragments.favorites.viewmodel.CocktailState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
@@ -30,6 +30,8 @@ class CocktailViewModel @Inject constructor(
     private val _cocktails = MutableLiveData<Resource<List<Cocktail>>>()
 
     private var favoritesItem: List<Int> = mutableListOf()
+    private val filterMap: MutableMap<String, String> = mutableMapOf()
+
 
     val cocktails: LiveData<Resource<List<Cocktail>>> get() = _cocktails
 
@@ -54,7 +56,7 @@ class CocktailViewModel @Inject constructor(
             if (response.isSuccessful) {
                 val cocktails = response.body()?.drinks ?: emptyList()
                 getFavoritesIDs()
-                cocktails.forEach{cocktail ->
+                cocktails.forEach { cocktail ->
                     if (favoritesItem.contains(cocktail.id)) {
                         cocktail.favorite = true
                     }
@@ -93,9 +95,34 @@ class CocktailViewModel @Inject constructor(
 
     private suspend fun getFavoritesIDs() {
         favoritesItem = cocktailRepository.getFavoritesIDs()
-
     }
 
+    fun fetchCocktailsByFilter(argSpec: String, filterBy: String) {
+        filterMap[filterBy] = argSpec
+
+        viewModelScope.launch(handler) {
+            _cocktails.value = Resource.Loading()
+            val response = cocktailRepository.getCocktailsByFilter(filterMap)
+            if (response.isSuccessful) {
+                val cocktails = response.body()?.drinks ?: emptyList()
+                getFavoritesIDs()
+                cocktails.forEach { cocktail ->
+                    if (favoritesItem.contains(cocktail.id)) {
+                        cocktail.favorite = true
+                    }
+                }
+                cocktails.forEach {
+                    if (it.alcoholic.isNullOrEmpty()) {
+                        it.alcoholic = "Other"
+                    }
+                }
+                _cocktails.value = Resource.Success(cocktails)
+            } else {
+                _cocktails.value =
+                    Resource.Error(application.applicationContext.resources.getString(R.string.failed_fetch))
+            }
+        }
+    }
 }
 
 
