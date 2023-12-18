@@ -4,9 +4,11 @@
     tools:ignore="MissingLeanbackLauncher">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
+
     <application
         android:name=".application.CocktailsApplication"
         android:allowBackup="true"
@@ -18,12 +20,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cocktails"
         tools:targetApi="32">
-
         <activity
             android:name=".presentation.activities.SplashScreenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.activities.AuthActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/Theme.Cocktails.MySplash">
+            android:theme="@style/Theme.Cocktails.MySplash"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
