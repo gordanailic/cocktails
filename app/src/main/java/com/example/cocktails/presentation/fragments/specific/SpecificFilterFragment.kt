@@ -19,7 +19,6 @@ import com.example.cocktails.data.models.Resource
 import com.example.cocktails.databinding.FragmentSpecificfilterBinding
 import com.example.cocktails.presentation.fragments.specific.recycler.adapter.SpecificFilterAdapter
 import com.example.cocktails.presentation.fragments.specific.viewmodel.SpecificFilterViewModel
-import timber.log.Timber
 
 
 class SpecificFilterFragment : Fragment(R.layout.fragment_specificfilter) {
@@ -110,13 +109,12 @@ class SpecificFilterFragment : Fragment(R.layout.fragment_specificfilter) {
                     binding.rvFilter.visibility = View.GONE
 
                     val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-                    builder.setMessage("Error loading data: ${resource.message}").setTitle("Error")
+                    builder.setMessage(resources.getString(R.string.filter_error, resource.message)).setTitle("Error")
                         .setPositiveButton("OK") { _, _ ->
                         }
 
                     val dialog: AlertDialog = builder.create()
                     dialog.show()
-                    Timber.e("Error loading data: ${resource.message}")
                 }
             }
         }

@@ -24,7 +24,6 @@ import com.example.cocktails.data.models.Resource
 import com.example.cocktails.databinding.FragmentCocktailsBinding
 import com.example.cocktails.presentation.fragments.cocktails.recycler.adapter.CocktailAdapter
 import com.example.cocktails.presentation.fragments.cocktails.viewmodel.CocktailViewModel
-import timber.log.Timber
 
 class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
 
@@ -116,13 +115,12 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
                     binding.rvCocktails.visibility = View.GONE
 
                     val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-                    builder.setMessage("Error loading data: ${resource.message}").setTitle("Error")
+                    builder.setMessage(resources.getString(R.string.filter_error, resource.message)).setTitle("Error")
                         .setPositiveButton("OK") { _, _ ->
                         }
 
                     val dialog: AlertDialog = builder.create()
                     dialog.show()
-                    Timber.e("Error loading data: ${resource.message}")
                 }
             }
         }

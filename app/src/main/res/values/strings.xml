@@ -31,5 +31,6 @@
     <string name="filter_category">Filter cocktails by Category</string>
     <string name="filter_glass">Filter cocktails by Glass used</string>
     <string name="filter_ingredient">Filter cocktails by Ingredient</string>
+    <string name="filter_error">Error loading data: %1$s</string>
 
 </resources>

@@ -5,10 +5,10 @@ import com.example.cocktails.data.models.Filter
 
 class SpecificFilterDiffcallback  : DiffUtil.ItemCallback<Filter>() {
     override fun areItemsTheSame(oldItem: Filter, newItem: Filter): Boolean {
-        TODO("Not yet implemented")
+        return oldItem === newItem
     }
 
     override fun areContentsTheSame(oldItem: Filter, newItem: Filter): Boolean {
-        TODO("Not yet implemented")
+        return oldItem.getLabel() == newItem.getLabel()
     }
 }
