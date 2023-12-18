@@ -5,6 +5,7 @@ import com.example.cocktails.data.datasources.local.CocktailDao
 import com.example.cocktails.data.datasources.remote.CocktailsService
 import com.example.cocktails.data.models.Cocktail
 import com.example.cocktails.data.models.CocktailResponse
+import com.example.cocktails.data.models.FilterResponse
 import retrofit2.Response
 
 class CocktailRepositoryImpl(
@@ -14,6 +15,14 @@ class CocktailRepositoryImpl(
 
     override suspend fun getCocktails(name: String): Response<CocktailResponse> {
         return api.getCocktails(name)
+    }
+
+    override suspend fun getSpecificCategory(filterMap: Map<String, String>): Response<FilterResponse> {
+        return api.getSpecificCategory(filterMap)
+    }
+
+    override suspend fun getCocktailsByFilter(filterMap: Map<String, String>): Response<CocktailResponse> {
+        return api.getCocktailsByFilter(filterMap)
     }
 
     override suspend fun getFavoritesIDs(): List<Int> {
