@@ -13,7 +13,7 @@ import com.example.cocktails.databinding.ActivitySplashScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SplashScreenActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
 
