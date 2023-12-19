@@ -1,26 +1,19 @@
 package com.example.cocktails.presentation.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.cocktails.R
 import com.example.cocktails.databinding.FragmentRegisterBinding
 
 class RegistrationFragment : Fragment(R.layout.fragment_register) {
 
+    private val authViewModel: AuthViewModel by hiltNavGraphViewModels(R.id.registerFragment)
     private var _binding: FragmentRegisterBinding? = null
-    private lateinit var nameEditText: EditText
-    private lateinit var name: String
-    private lateinit var emailEditText: EditText
-    private lateinit var email: String
-    private lateinit var passeordEditText: EditText
-    private lateinit var password: String
-    private lateinit var registerButton: Button
     private val binding get() = _binding!!
     private val emailPattern: Regex = Regex("[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-z]+")
     private val passwordPatter: Regex = Regex("^(?=.*[A-Za-z])(?=.*\\d).{6,}\$")
@@ -34,37 +27,38 @@ class RegistrationFragment : Fragment(R.layout.fragment_register) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initUI()
         initListener()
-
     }
 
-    private fun initUI() {
-        nameEditText = binding.name
-        emailEditText = binding.email
-        passeordEditText = binding.password
-        registerButton = binding.buttonRegister
-    }
 
     private fun initListener() {
-        registerButton.setOnClickListener {
-            name = binding.name.text.toString()
-            email = binding.email.text.toString().trim()
-            password = binding.password.text.toString()
-
+        binding.buttonRegister.setOnClickListener {
+            val name = binding.name.text.toString().trim()
+            val email = binding.email.text.toString().trim()
+            val password = binding.password.text.toString().trim()
+            var isSaved = false
             if (name.isEmpty()) {
-                nameEditText.error = resources.getString(R.string.invalid_name)
+                binding.name.error = resources.getString(R.string.invalid_name)
             }
             if (!checkEmail(email)) {
-                emailEditText.error = resources.getString(R.string.invalid_email)
+                binding.email.error = resources.getString(R.string.invalid_email)
             }
 
             if (!checkPassword(password)) {
-                passeordEditText.error = resources.getString(R.string.invalid_password)
+                binding.password.error = resources.getString(R.string.invalid_password)
             }
             if (checkEmail(email) && checkPassword(password) && name.isNotEmpty()) {
-                saveUserData()
+                isSaved = authViewModel.saveUserData(name, email, password)
             }
+            if (isSaved) {
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            } else {
+                binding.email.error = resources.getString(R.string.unique_email)
+            }
+        }
+
+        binding.buttonLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
     }
 
@@ -76,15 +70,6 @@ class RegistrationFragment : Fragment(R.layout.fragment_register) {
         return password.matches(passwordPatter) && password.isNotEmpty()
     }
 
-    private fun saveUserData() {
-        val sharedPreferences =
-            activity?.getSharedPreferences("user_data", Context.MODE_PRIVATE)
-        val editor = sharedPreferences?.edit()
-        editor?.putString("name", name)
-        editor?.putString("email", email)
-        editor?.putString("password", password)
-        editor?.apply()
-    }
 
 }
 

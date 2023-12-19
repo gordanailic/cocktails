@@ -8,4 +8,8 @@ object Constants {
         "Glass used",
         "Ingredient"
     )
+
+    const val nameKey = "name_"
+    const val emailKey = "email_"
+    const val passwordKey = "password_"
 }

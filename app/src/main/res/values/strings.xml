@@ -39,6 +39,8 @@
     <string name="invalid_name">Invalid name</string>
     <string name="invalid_email">Invalid email</string>
     <string name="invalid_password">Invalid password</string>
+    <string name="unique_email">Email address is already registered</string>
+
 
 
 </resources>
