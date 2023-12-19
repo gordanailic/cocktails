@@ -20,6 +20,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private val binding get() = _binding!!
     private lateinit var adapter: FavoriteRecyclerViewAdapter
     private val favoritesViewModel: FavoritesViewModel by hiltNavGraphViewModels(R.id.favoritesFragment)
+    private lateinit var email: String
 
 
     override fun onCreateView(
@@ -31,9 +32,13 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val intent = requireActivity().intent
+        email = intent.getStringExtra("email").toString()
+        favoritesViewModel.getFavorites(email)
         setupRecyclerView()
         initObservers()
     }
+
 
     private fun setupRecyclerView() {
         val layoutManager = GridLayoutManager(activity, 2)
@@ -54,5 +59,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
             }
         }
+        //   favoritesViewModel.getFavorites(email)
+
     }
 }

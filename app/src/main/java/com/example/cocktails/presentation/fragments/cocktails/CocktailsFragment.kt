@@ -35,6 +35,7 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
     private lateinit var adapter: CocktailAdapter
     private var argSpec: String = ""
     private var filterBy: String = ""
+    private lateinit var email: String
 
 
     override fun onCreateView(
@@ -48,7 +49,8 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val intent = requireActivity().intent
+        email = intent.getStringExtra("email").toString()
 
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
@@ -89,10 +91,10 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
                         binding.labelNothing.visibility = View.VISIBLE
                         binding.progressBar.visibility = View.GONE
                     } else {
-                        if(filterBy.isNotEmpty()){
+                        if (filterBy.isNotEmpty()) {
                             binding.filerLabel.visibility = View.VISIBLE
                             binding.filerLabel.text = argSpec
-                        }else{
+                        } else {
                             binding.filerLabel.visibility = View.GONE
 
                         }
@@ -115,7 +117,8 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
                     binding.rvCocktails.visibility = View.GONE
 
                     val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-                    builder.setMessage(resources.getString(R.string.filter_error, resource.message)).setTitle("Error")
+                    builder.setMessage(resources.getString(R.string.filter_error, resource.message))
+                        .setTitle("Error")
                         .setPositiveButton("OK") { _, _ ->
                         }
 
@@ -125,16 +128,18 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
             }
         }
         if (filterBy.isEmpty()) {
-            cocktailViewModel.fetchAllCocktails("")
+            cocktailViewModel.fetchAllCocktails("", email)
         } else {
-            cocktailViewModel.fetchCocktailsByFilter(argSpec, filterBy)
+            cocktailViewModel.fetchCocktailsByFilter(argSpec, filterBy, email)
         }
     }
 
     private fun setupRecyclerView() {
+
         binding.rvCocktails.layoutManager = GridLayoutManager(context, 2)
         adapter = CocktailAdapter()
         adapter.onImageClickListener = { cocktail: Cocktail, _: Int ->
+            cocktail.email = email
             if (cocktail.favorite) {
                 cocktailViewModel.deleteCocktail(cocktail)
             } else {
@@ -148,7 +153,7 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
     private fun initListeners() {
         binding.inputEt.doAfterTextChanged {
             val filter = it.toString()
-            cocktailViewModel.fetchAllCocktails(filter)
+            cocktailViewModel.fetchAllCocktails(filter, email)
         }
     }
 

@@ -44,7 +44,7 @@ class CocktailViewModel @Inject constructor(
             Resource.Error(application.applicationContext.resources.getString(R.string.failed_fetch) + exception.message)
     }
 
-    fun fetchAllCocktails(query: String) {
+    fun fetchAllCocktails(query: String, email: String) {
         searchJob?.cancel()
 
         searchJob = viewModelScope.launch(handler) {
@@ -55,7 +55,7 @@ class CocktailViewModel @Inject constructor(
             val response = cocktailRepository.getCocktails(query)
             if (response.isSuccessful) {
                 val cocktails = response.body()?.drinks ?: emptyList()
-                getFavoritesIDs()
+                getFavoritesIDs(email)
                 cocktails.forEach { cocktail ->
                     if (favoritesItem.contains(cocktail.id)) {
                         cocktail.favorite = true
@@ -93,11 +93,11 @@ class CocktailViewModel @Inject constructor(
         }
     }
 
-    private suspend fun getFavoritesIDs() {
-        favoritesItem = cocktailRepository.getFavoritesIDs()
+    private suspend fun getFavoritesIDs(email: String) {
+        favoritesItem = cocktailRepository.getFavoritesIDs(email)
     }
 
-    fun fetchCocktailsByFilter(argSpec: String, filterBy: String) {
+    fun fetchCocktailsByFilter(argSpec: String, filterBy: String, email: String) {
         filterMap[filterBy] = argSpec
 
         viewModelScope.launch(handler) {
@@ -105,7 +105,7 @@ class CocktailViewModel @Inject constructor(
             val response = cocktailRepository.getCocktailsByFilter(filterMap)
             if (response.isSuccessful) {
                 val cocktails = response.body()?.drinks ?: emptyList()
-                getFavoritesIDs()
+                getFavoritesIDs(email)
                 cocktails.forEach { cocktail ->
                     if (favoritesItem.contains(cocktail.id)) {
                         cocktail.favorite = true

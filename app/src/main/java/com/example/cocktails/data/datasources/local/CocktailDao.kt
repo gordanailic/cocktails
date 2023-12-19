@@ -13,12 +13,12 @@ interface CocktailDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCocktail(cocktail: Cocktail): Long
 
-    @Query("SELECT * FROM cocktail ORDER BY alcoholic")
-    fun getFavorites(): LiveData<List<Cocktail>>
+    @Query("SELECT * FROM cocktail WHERE email = :email ORDER BY alcoholic")
+    fun getFavorites(email: String): LiveData<List<Cocktail>>
 
     @Delete
     suspend fun deleteCocktail(cocktail: Cocktail): Int
 
-    @Query("SELECT id FROM cocktail")
-    suspend fun getFavoritesIDs(): List<Int>
+    @Query("SELECT id FROM cocktail WHERE email = :email")
+    suspend fun getFavoritesIDs(email: String): List<Int>
 }

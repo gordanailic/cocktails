@@ -11,9 +11,9 @@ interface CocktailRepository {
     suspend fun getCocktails(name: String): Response<CocktailResponse>
     suspend fun getSpecificCategory(filterMap: Map<String, String>): Response<FilterResponse>
     suspend fun getCocktailsByFilter(filterMap: Map<String, String>): Response<CocktailResponse>
-    suspend fun getFavoritesIDs(): List<Int>
+    suspend fun getFavoritesIDs(email: String): List<Int>
 
-    fun getFavorites(): LiveData<List<Cocktail>>
+    fun getFavorites(email: String): LiveData<List<Cocktail>>
 
     suspend fun insertCocktail(cocktail: Cocktail): Long
     suspend fun deleteCocktail(cocktail: Cocktail): Int

@@ -16,11 +16,23 @@ class AuthViewModel @Inject constructor(
             false
         } else {
             val editor = sharedPreferences.edit()
-            editor?.putString(Constants.nameKey + name, name)
+            editor?.putString(Constants.nameKey + email, name)
             editor?.putString(Constants.emailKey + email, email)
-            editor?.putString(Constants.passwordKey + password, password)
+            editor?.putString(Constants.passwordKey + email, password)
             editor?.apply()
             true
+        }
+    }
+
+    fun checkData(email: String, password: String): Boolean{
+        return if(sharedPreferences.getString(Constants.emailKey + email, null).equals(email)
+            && sharedPreferences.getString(Constants.passwordKey + email, null).equals(password)){
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("login", true)
+            editor.apply()
+            true
+        }else{
+            false
         }
     }
 }

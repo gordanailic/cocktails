@@ -40,7 +40,7 @@
     <string name="invalid_email">Invalid email</string>
     <string name="invalid_password">Invalid password</string>
     <string name="unique_email">Email address is already registered</string>
-
+    <string name="incorrect_email_or_password">Incorrect email or password</string>
 
 
 </resources>

@@ -25,12 +25,12 @@ class CocktailRepositoryImpl(
         return api.getCocktailsByFilter(filterMap)
     }
 
-    override suspend fun getFavoritesIDs(): List<Int> {
-        return localDataSource.getFavoritesIDs()
+    override suspend fun getFavoritesIDs(email: String): List<Int> {
+        return localDataSource.getFavoritesIDs(email)
     }
 
-    override fun getFavorites(): LiveData<List<Cocktail>> {
-        return localDataSource.getFavorites()
+    override fun getFavorites(email: String): LiveData<List<Cocktail>> {
+        return localDataSource.getFavorites(email)
     }
 
     override suspend fun insertCocktail(cocktail: Cocktail): Long {
