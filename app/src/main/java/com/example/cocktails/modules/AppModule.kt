@@ -1,6 +1,7 @@
 package com.example.cocktails.modules
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.cocktails.Constants
 import com.example.cocktails.data.datasources.local.CocktailDao
@@ -82,5 +83,13 @@ object AppModule {
     @Provides
     fun provideCocktailDao(db: CocktailDataBase) =
         db.getCocktailDao() // The reason we can implement a Dao for the database
+
+
+    @Singleton
+    @Provides
+    fun provideSharedPreference(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("preferences_name", Context.MODE_PRIVATE)
+    }
+
 
 }

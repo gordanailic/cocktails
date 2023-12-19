@@ -4,11 +4,11 @@
     <string name="favorites">Favorites</string>
     <string name="profile">Profile</string>
     <string name="todo">TODO</string>
-    <string name="email">Email</string>
+    <string name="email">email</string>
     <string name="example_mail_com">example@mail.com</string>
     <string name="gordana_ilic">Gordana Ilic</string>
     <string name="full_name">Full name</string>
-    <string name="password">Password</string>
+    <string name="password">password</string>
     <string name="example123">example123</string>
     <string name="logout">Logout</string>
     <string name="ime_koktela">Ime koktela</string>
@@ -32,7 +32,15 @@
     <string name="filter_glass">Filter cocktails by Glass used</string>
     <string name="filter_ingredient">Filter cocktails by Ingredient</string>
     <string name="filter_error">Error loading data: %1$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register">Register</string>
+    <string name="name">name</string>
+    <string name="or">or</string>
+    <string name="login">Login</string>
+    <string name="invalid_name">Invalid name</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="unique_email">Email address is already registered</string>
+
+
 
 </resources>
