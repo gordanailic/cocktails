@@ -1,4 +1,4 @@
-package com.example.cocktails.presentation.fragments
+package com.example.cocktails.presentation.fragments.authentication
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cocktails.R
 import com.example.cocktails.databinding.FragmentRegisterBinding
+import com.example.cocktails.presentation.fragments.authentication.viewmodel.AuthViewModel
 
 class RegistrationFragment : Fragment(R.layout.fragment_register) {
 
@@ -29,7 +30,6 @@ class RegistrationFragment : Fragment(R.layout.fragment_register) {
         super.onViewCreated(view, savedInstanceState)
         initListener()
     }
-
 
     private fun initListener() {
         binding.buttonRegister.setOnClickListener {
@@ -69,7 +69,6 @@ class RegistrationFragment : Fragment(R.layout.fragment_register) {
     private fun checkPassword(password: String): Boolean {
         return password.matches(passwordPatter) && password.isNotEmpty()
     }
-
 
 }
 

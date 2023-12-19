@@ -1,4 +1,4 @@
-package com.example.cocktails.presentation.fragments
+package com.example.cocktails.presentation.fragments.authentication.viewmodel
 
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
@@ -24,15 +24,21 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun checkData(email: String, password: String): Boolean{
-        return if(sharedPreferences.getString(Constants.emailKey + email, null).equals(email)
-            && sharedPreferences.getString(Constants.passwordKey + email, null).equals(password)){
+    fun checkData(email: String, password: String): Boolean {
+        return if (sharedPreferences.getString(Constants.emailKey + email, null)
+                .equals(email) && sharedPreferences.getString(Constants.passwordKey + email, null)
+                .equals(password)
+        ) {
             val editor = sharedPreferences.edit()
-            editor.putBoolean("login", true)
+            editor.putBoolean(Constants.loginKey, true)
             editor.apply()
             true
-        }else{
+        } else {
             false
         }
+    }
+
+    fun checkLoginIn(): Boolean {
+        return sharedPreferences.getBoolean(Constants.loginKey, false)
     }
 }
