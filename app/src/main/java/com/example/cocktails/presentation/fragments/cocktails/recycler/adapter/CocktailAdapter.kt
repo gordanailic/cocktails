@@ -27,7 +27,7 @@ class CocktailAdapter : ListAdapter<Cocktail, CocktailViewHolder>(CocktailDiffca
         cocktailViewHolder: CocktailViewHolder,
         binding: ItemCocktailBinding
     ) {
-        binding.root.setOnClickListener {
+        binding.favoriteButton.setOnClickListener {
             val cocktailItem = getItem(cocktailViewHolder.bindingAdapterPosition)
             val imageResourceId = if (cocktailItem.favorite) {
                 R.drawable.imageview_unchecked

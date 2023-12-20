@@ -13,4 +13,6 @@ object Constants {
     const val nameKey = "name_"
     const val emailKey = "email_"
     const val passwordKey = "password_"
+    const val loginKey = "login"
+
 }

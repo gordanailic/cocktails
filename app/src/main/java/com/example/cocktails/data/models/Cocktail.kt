@@ -12,5 +12,6 @@ data class Cocktail(
     @SerializedName("strDrink") val name: String,
     @SerializedName("strDrinkThumb") val image: String,
     @SerializedName("strAlcoholic") var alcoholic: String?,
-    var favorite: Boolean
+    var favorite: Boolean,
+    var email: String?
 )
