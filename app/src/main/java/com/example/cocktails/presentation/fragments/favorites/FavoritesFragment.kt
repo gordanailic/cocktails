@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.cocktails.Constants
 import com.example.cocktails.R
 import com.example.cocktails.databinding.FragmentFavoritesBinding
 import com.example.cocktails.presentation.fragments.favorites.recycler.adapter.FavoriteRecyclerViewAdapter
@@ -33,7 +34,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val intent = requireActivity().intent
-        email = intent.getStringExtra("email").toString()
+        email = intent.getStringExtra(Constants.emailKey).toString()
         favoritesViewModel.getFavorites(email)
         setupRecyclerView()
         initObservers()
@@ -59,7 +60,5 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
             }
         }
-        //   favoritesViewModel.getFavorites(email)
-
     }
 }

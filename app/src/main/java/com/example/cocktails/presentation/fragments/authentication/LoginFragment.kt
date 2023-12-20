@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.cocktails.Constants
 import com.example.cocktails.R
 import com.example.cocktails.databinding.FragmentLoginBinding
 import com.example.cocktails.presentation.activities.MainActivity
@@ -50,7 +51,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             if (isRegistered) {
                 binding.incorrect.visibility = View.GONE
                 val intent = Intent(activity, MainActivity::class.java)
-                intent.putExtra("email", binding.email.text.toString())
+                intent.putExtra(Constants.emailKey, binding.email.text.toString())
                 startActivity(intent)
                 activity?.finish()
             } else {
