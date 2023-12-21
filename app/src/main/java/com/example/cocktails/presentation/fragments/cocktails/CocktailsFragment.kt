@@ -120,8 +120,8 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
 
                     val builder: AlertDialog.Builder = AlertDialog.Builder(context)
                     builder.setMessage(resources.getString(R.string.filter_error, resource.message))
-                        .setTitle("Error")
-                        .setPositiveButton("OK") { _, _ ->
+                        .setTitle(resources.getString(R.string.error))
+                        .setPositiveButton(resources.getString(R.string.ok)) { _, _ ->
                         }
 
                     val dialog: AlertDialog = builder.create()

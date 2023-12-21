@@ -15,4 +15,11 @@ object Constants {
     const val passwordKey = "password_"
     const val loginKey = "login"
 
+    const val drinkThumbKey = "strDrinkThumb"
+    const val nameDrinkKey = "strDrink"
+    const val alcoholicKey = "strAlcoholic"
+    const val categoryKey = "strCategory"
+    const val glassKey = "strGlass"
+    const val instructionsKey = "strInstructions"
+
 }
