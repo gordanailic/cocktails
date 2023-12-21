@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.details.CocktailDetailsFragment">
-    <!--Nested scroll view-->
+    
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -91,7 +91,7 @@
                 android:layout_marginTop="11dp"
                 android:background="#EA9922"
                 android:paddingHorizontal="7dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/icon_alcoholic"
                 app:layout_constraintTop_toBottomOf="@id/cocktail_name"
                 tools:text="Alcoholic" />
@@ -104,7 +104,7 @@
                 android:layout_marginTop="11dp"
                 android:background="#EA9922"
                 android:paddingHorizontal="7dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/icon_category"
                 app:layout_constraintTop_toBottomOf="@id/icon_alcoholic"
                 tools:text="Beer" />
@@ -117,7 +117,7 @@
                 android:layout_marginTop="11dp"
                 android:background="#EA9922"
                 android:paddingHorizontal="7dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/icon_glass"
                 app:layout_constraintTop_toBottomOf="@id/icon_category"
                 tools:text="Beer Glass" />
