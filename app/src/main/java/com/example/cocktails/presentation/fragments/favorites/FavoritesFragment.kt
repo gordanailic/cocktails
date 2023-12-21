@@ -51,7 +51,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         adapter.onItemClick = { cocktail: FavoriteRecyclerViewItem.Favorite, _: Int ->
             val args = bundleOf(
                 "argDetails" to cocktail.id,
-                "argsFavorite" to cocktail.favorite,
+                "argsFavorite" to true,
                 "argEmail" to email
             )
             findNavController().navigate(

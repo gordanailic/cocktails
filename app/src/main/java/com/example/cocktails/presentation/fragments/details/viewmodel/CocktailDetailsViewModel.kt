@@ -139,9 +139,11 @@ class CocktailDetailsViewModel @Inject constructor(
             if (!ingredient.isNullOrEmpty()) {
                 stringBuilderIngredient.append("$ingredient")
                 if (!measure.isNullOrEmpty()) {
-                    stringBuilderIngredient.append("(")
+                    stringBuilderIngredient.append(" (")
                     stringBuilderIngredient.append("$measure")
                     stringBuilderIngredient.append(")\n")
+                }else{
+                    stringBuilderIngredient.append("\n")
                 }
             }
         }
