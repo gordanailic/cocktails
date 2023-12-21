@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragments.details.CocktailDetailsFragment">
+    <!--Nested scroll view-->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ScrollViewCount">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/cocktail_image"
+                android:layout_width="match_parent"
+                android:layout_height="375dp"
+                android:contentDescription="@string/cocktail_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/cocktail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cocktail_image"
+                tools:text="@string/cocktail_name" />
+
+            <ImageView
+                android:id="@+id/favoriteButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/imageview_unchecked"
+                android:contentDescription="@string/favorite_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cocktail_image" />
+
+            <ImageView
+                android:id="@+id/icon_alcoholic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/icon_alcoholic"
+                android:src="@drawable/icon_alcoholic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cocktail_name" />
+
+            <ImageView
+                android:id="@+id/icon_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/icon_category"
+                android:src="@drawable/icon_category"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/icon_alcoholic" />
+
+            <ImageView
+                android:id="@+id/icon_glass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/icon_glass"
+                android:src="@drawable/icon_glass"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/icon_category" />
+
+            <TextView
+                android:id="@+id/label_alcoholic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="11dp"
+                android:background="#EA9922"
+                android:paddingHorizontal="7dp"
+                android:textSize="20dp"
+                app:layout_constraintStart_toEndOf="@id/icon_alcoholic"
+                app:layout_constraintTop_toBottomOf="@id/cocktail_name"
+                tools:text="Alcoholic" />
+
+            <TextView
+                android:id="@+id/label_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="11dp"
+                android:background="#EA9922"
+                android:paddingHorizontal="7dp"
+                android:textSize="20dp"
+                app:layout_constraintStart_toEndOf="@id/icon_category"
+                app:layout_constraintTop_toBottomOf="@id/icon_alcoholic"
+                tools:text="Beer" />
+
+            <TextView
+                android:id="@+id/label_glass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="11dp"
+                android:background="#EA9922"
+                android:paddingHorizontal="7dp"
+                android:textSize="20dp"
+                app:layout_constraintStart_toEndOf="@id/icon_glass"
+                app:layout_constraintTop_toBottomOf="@id/icon_category"
+                tools:text="Beer Glass" />
+
+            <TextView
+                android:id="@+id/ingredients_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/ingredients"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/icon_glass" />
+
+            <TextView
+                android:id="@+id/ingredients_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredients_label"
+                tools:text="Items" />
+
+            <TextView
+                android:id="@+id/instructions_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/instructions"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredients_items" />
+
+            <TextView
+                android:id="@+id/instructions_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/instructions_label"
+                tools:text="Instruction" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

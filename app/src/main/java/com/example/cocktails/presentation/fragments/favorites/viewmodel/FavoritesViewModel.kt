@@ -24,7 +24,7 @@ class FavoritesViewModel @Inject constructor(
                         }) {
                         val favoriteItem: FavoriteRecyclerViewItem.Favorite =
                             FavoriteRecyclerViewItem.Favorite(
-                                cocktail.id, cocktail.name, cocktail.image, cocktail.alcoholic
+                                cocktail.id, cocktail.name, cocktail.image, cocktail.favorite, cocktail.alcoholic
                             )
                         listItem.add(favoriteItem)
 
@@ -34,7 +34,7 @@ class FavoritesViewModel @Inject constructor(
                         listItem.add(labelItem)
                         val favoriteItem: FavoriteRecyclerViewItem.Favorite =
                             FavoriteRecyclerViewItem.Favorite(
-                                cocktail.id, cocktail.name, cocktail.image, cocktail.alcoholic
+                                cocktail.id, cocktail.name, cocktail.image, cocktail.favorite, cocktail.alcoholic
                             )
                         listItem.add(favoriteItem)
                     }

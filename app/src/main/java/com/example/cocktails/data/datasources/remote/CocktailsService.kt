@@ -1,5 +1,6 @@
 package com.example.cocktails.data.datasources.remote
 
+import com.example.cocktails.data.models.CocktailDetailsResponse
 import com.example.cocktails.data.models.CocktailResponse
 import com.example.cocktails.data.models.FilterResponse
 import retrofit2.Response
@@ -16,4 +17,7 @@ interface CocktailsService {
     suspend fun getSpecificCategory(@QueryMap params: Map<String, String>): Response<FilterResponse>
     @GET("/api/json/v1/1/filter.php")
     suspend fun getCocktailsByFilter(@QueryMap params: Map<String, String>): Response<CocktailResponse>
+    @GET("/api/json/v1/1/lookup.php")
+    suspend fun getCocktailDetails(@Query("i") query: Int): Response<CocktailDetailsResponse>
+
 }
