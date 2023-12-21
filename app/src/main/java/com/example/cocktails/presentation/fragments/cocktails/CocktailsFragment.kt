@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
@@ -18,6 +19,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.cocktails.Constants
 import com.example.cocktails.R
 import com.example.cocktails.data.models.Cocktail
 import com.example.cocktails.data.models.Resource
@@ -50,7 +52,7 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val intent = requireActivity().intent
-        email = intent.getStringExtra("email").toString()
+        email = intent.getStringExtra(Constants.emailKey).toString()
 
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
@@ -118,8 +120,8 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
 
                     val builder: AlertDialog.Builder = AlertDialog.Builder(context)
                     builder.setMessage(resources.getString(R.string.filter_error, resource.message))
-                        .setTitle("Error")
-                        .setPositiveButton("OK") { _, _ ->
+                        .setTitle(resources.getString(R.string.error))
+                        .setPositiveButton(resources.getString(R.string.ok)) { _, _ ->
                         }
 
                     val dialog: AlertDialog = builder.create()
@@ -146,6 +148,18 @@ class CocktailsFragment : Fragment(R.layout.fragment_cocktails) {
                 cocktailViewModel.insertCocktail(cocktail)
             }
             cocktail.favorite = !cocktail.favorite
+        }
+        adapter.onItemClick = { cocktail: Cocktail, _: Int ->
+            val args = bundleOf(
+                "argDetails" to cocktail.id,
+                "argsFavorite" to cocktail.favorite,
+                "argEmail" to email
+            )
+            findNavController().navigate(
+                R.id.action_cocktailsFragment_to_cocktailDetailsFragment,
+                args
+            )
+
         }
         binding.rvCocktails.adapter = adapter
     }

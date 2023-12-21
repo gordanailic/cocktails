@@ -52,7 +52,7 @@ class SpecificFilterFragment : Fragment(R.layout.fragment_specificfilter) {
         recyclerView.layoutManager = layoutManager
 
         val dividerItemDecoration =
-            DividerItemDecoration(recyclerView.context,layoutManager.orientation)
+            DividerItemDecoration(recyclerView.context, layoutManager.orientation)
 
         recyclerView.addItemDecoration(dividerItemDecoration)
 
@@ -109,7 +109,8 @@ class SpecificFilterFragment : Fragment(R.layout.fragment_specificfilter) {
                     binding.rvFilter.visibility = View.GONE
 
                     val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-                    builder.setMessage(resources.getString(R.string.filter_error, resource.message)).setTitle("Error")
+                    builder.setMessage(resources.getString(R.string.filter_error, resource.message))
+                        .setTitle("Error")
                         .setPositiveButton("OK") { _, _ ->
                         }
 

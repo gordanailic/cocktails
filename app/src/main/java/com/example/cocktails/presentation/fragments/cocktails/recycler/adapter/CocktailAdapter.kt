@@ -12,6 +12,7 @@ import com.example.cocktails.presentation.fragments.cocktails.recycler.viewholde
 
 class CocktailAdapter : ListAdapter<Cocktail, CocktailViewHolder>(CocktailDiffcallback()) {
     var onImageClickListener: ((Cocktail, Int) -> Unit)? = null
+    var onItemClick: ((Cocktail, Int) -> Unit)? = null
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CocktailViewHolder {
@@ -19,7 +20,6 @@ class CocktailAdapter : ListAdapter<Cocktail, CocktailViewHolder>(CocktailDiffca
             ItemCocktailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CocktailViewHolder(itemBinding).apply {
             onViewHolderCreated(this, itemBinding)
-
         }
     }
 
@@ -38,6 +38,13 @@ class CocktailAdapter : ListAdapter<Cocktail, CocktailViewHolder>(CocktailDiffca
             Glide.with(binding.favoriteButton.context).load(imageResourceId)
                 .into(binding.favoriteButton)
             onImageClickListener?.invoke(
+                getItem(cocktailViewHolder.bindingAdapterPosition),
+                cocktailViewHolder.bindingAdapterPosition
+            )
+        }
+
+        binding.root.setOnClickListener {
+            onItemClick?.invoke(
                 getItem(cocktailViewHolder.bindingAdapterPosition),
                 cocktailViewHolder.bindingAdapterPosition
             )

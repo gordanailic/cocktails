@@ -10,6 +10,7 @@ sealed class FavoriteRecyclerViewItem {
         val id: Int,
         val name: String,
         val image: String,
+        var favorite: Boolean,
         val alcoholic: String?,
     ) : FavoriteRecyclerViewItem()
 }

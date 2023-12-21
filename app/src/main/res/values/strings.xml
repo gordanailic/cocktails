@@ -32,6 +32,8 @@
     <string name="filter_glass">Filter cocktails by Glass used</string>
     <string name="filter_ingredient">Filter cocktails by Ingredient</string>
     <string name="filter_error">Error loading data: %1$s</string>
+    <string name="error">Error</string>
+    <string name="ok">Ok</string>
     <string name="register">Register</string>
     <string name="name">name</string>
     <string name="or">or</string>
@@ -41,6 +43,13 @@
     <string name="invalid_password">Invalid password</string>
     <string name="unique_email">Email address is already registered</string>
     <string name="incorrect_email_or_password">Incorrect email or password</string>
+    <string name="cocktail_image">Cocktail image</string>
+    <string name="cocktail_name">Cocktail name</string>
+    <string name="icon_alcoholic">Icon alcoholic</string>
+    <string name="icon_category">Icon category</string>
+    <string name="icon_glass">Icon glass</string>
+    <string name="instructions">Instructions</string>
+    <string name="ingredients">Ingredients</string>
 
 
 </resources>

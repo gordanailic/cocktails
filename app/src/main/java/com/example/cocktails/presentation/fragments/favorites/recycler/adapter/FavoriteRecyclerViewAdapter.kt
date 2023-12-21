@@ -15,12 +15,12 @@ class FavoriteRecyclerViewAdapter :
     ListAdapter<FavoriteRecyclerViewItem, FavoriteRecyclerViewHolder>(
         FavoriteRecyclerViewItemDiffCallback()
     ) {
+    var onItemClick: ((FavoriteRecyclerViewItem.Favorite, Int) -> Unit)? = null
 
     companion object {
         const val ALCOHOLIC_VIEW = 1
         const val FAVORITE_VIEW = 2
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteRecyclerViewHolder {
 
@@ -31,13 +31,29 @@ class FavoriteRecyclerViewAdapter :
                 )
             )
 
-            FAVORITE_VIEW -> FavoriteRecyclerViewHolder.FavoritesViewHolder(
-                ItemFavoriteBinding.inflate(
+            FAVORITE_VIEW -> {
+                val binding = ItemFavoriteBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
-            )
+                FavoriteRecyclerViewHolder.FavoritesViewHolder(binding).apply {
+                    onViewHolderCreated(this, binding)
+                }
+            }
 
             else -> throw IllegalArgumentException("Invalid ViewType Provided")
+
+        }
+    }
+
+    private fun onViewHolderCreated(
+        favoriteRecyclerViewHolder: FavoriteRecyclerViewHolder.FavoritesViewHolder,
+        binding: ItemFavoriteBinding
+    ) {
+        binding.root.setOnClickListener {
+            onItemClick?.invoke(
+                getItem(favoriteRecyclerViewHolder.bindingAdapterPosition) as FavoriteRecyclerViewItem.Favorite,
+                favoriteRecyclerViewHolder.bindingAdapterPosition
+            )
         }
     }
 
