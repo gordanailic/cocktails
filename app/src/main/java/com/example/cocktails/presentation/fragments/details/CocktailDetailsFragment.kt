@@ -68,9 +68,7 @@ class CocktailDetailsFragment : Fragment(R.layout.fragment_cocktail_details) {
                 }
             }
         }
-
         cocktailDetailsViewModel.fetchAllCocktailDetails(argId)
-
     }
 
 
