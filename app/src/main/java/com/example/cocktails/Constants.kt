@@ -14,6 +14,8 @@ object Constants {
     const val emailKey = "email_"
     const val passwordKey = "password_"
     const val loginKey = "login"
+    const val imageKey = "imageUri"
+
 
     const val drinkThumbKey = "strDrinkThumb"
     const val nameDrinkKey = "strDrink"

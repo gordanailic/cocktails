@@ -29,17 +29,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkLogin()
         initListener()
-    }
-
-    private fun checkLogin() {
-        val isLogin = authViewModel.checkLoginIn()
-        if (isLogin) {
-            val intent = Intent(activity, MainActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
-        }
     }
 
     private fun initListener() {
