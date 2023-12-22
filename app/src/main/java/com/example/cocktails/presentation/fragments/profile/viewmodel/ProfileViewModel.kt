@@ -21,7 +21,7 @@ class ProfileViewModel @Inject constructor(
         return sharedPreferences.getString(key + email, null)
     }
 
-    fun updateValueInSharedPref(key: String, email: String, value: String){
+    fun updateValueInSharedPref(key: String, email: String, value: String) {
         val editor = sharedPreferences.edit()
         editor.putString(key + email, value)
         editor.apply()
@@ -34,7 +34,7 @@ class ProfileViewModel @Inject constructor(
         editor?.apply()
     }
 
-     fun loadImageUriFromSharedPref(): Uri? {
+    fun loadImageUriFromSharedPref(): Uri? {
         val uriString = sharedPreferences.getString(Constants.imageKey, null)
         return uriString?.let { Uri.parse(it) }
     }

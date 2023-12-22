@@ -164,7 +164,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
     }
 
-
     private fun checkPassword(password: String): Boolean {
         return password.matches(passwordPatter) && password.isNotEmpty()
     }
